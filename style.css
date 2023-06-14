@@ -1,0 +1,18 @@
+body {
+    background-color: #001632 !important;
+}
+
+h1 {
+    color: #808b9a !important;
+    font-size: 4rem !important;
+}
+
+.IN {
+    width: 20rem !important;
+    height: 4.6rem !important;
+    border-radius: 10px;
+}
+
+.height {
+    height: 7rem;
+}
