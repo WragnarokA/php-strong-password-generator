@@ -11,8 +11,17 @@ h1 {
     width: 20rem !important;
     height: 4.6rem !important;
     border-radius: 10px;
+    margin-right: 3rem;
 }
 
 .height {
-    height: 7rem;
+    height: 6rem !important;
 }
+
+.m-r {
+    margin-right: 30rem;
+}
+
+/* .check {
+    display: flex !important;
+} */

@@ -1,5 +1,19 @@
 <?php
-include "./funtion.php";
+include './funtion.php';
+
+$result = "";
+if (isset($_GET["pwdlen"])) {
+    $pwdLength = $_GET["pwdlen"];
+    $repetion = $_GET["repition"];
+
+    $result = generatePsw($pwdLength, $repetion);
+
+    session_start();
+    $_SESSION['password'] = $result;
+
+    // header("Location: ./session.php");
+}
+
 
 ?>
 
@@ -18,32 +32,102 @@ include "./funtion.php";
 </head>
 
 <body>
-    <div class="container">
+    <div class="container fs-3">
         <div class="row">
             <div class="col-12 ">
                 <h1 class="d-flex justify-content-center mt-5">Strong Password Generator</h1>
-                <h2 class="d-flex justify-content-center mt-2 text-light fs-1">Genera una password sicura</h2>
+                <h2 class="d-flex justify-content-center mt-4 text-light fs-1">Genera una password sicura</h2>
             </div>
 
-            <?php if (isset($result)) { ?>
-                <div class="col-12">
-                    <div class="alert alert-primary mt-5" role="alert">
-                        <?php echo $result ?>
+
+
+            <div class="col-12 mt-3 rounded ">
+
+                <?php if (isset($result)) { ?>
+                    <div class="col-12">
+                        <div class="alert alert-primary mt-2 height" role="alert">
+                            <?php echo $result ?>
+                        </div>
                     </div>
+                <?php } ?>
+
+
+                <div class="col-12 mt-3 bg-light rounded p-5 d-flex ">
+                    <form action="index.php" method="get">
+                        <label for="pwdlen" class="m-r">Lunghezza password:</label>
+                        <input class="IN" type="number" name="pwdlen" id="pwdlen" placeholder="Lunghezza password" min="8" max="30" value="25">
+
+
+                        <div class="check d-flex  justify-content-between mt-3">
+                            <label for="repition" class=" mt-4">Consenti ripetizioni di uno o più caratteri:</label>
+
+                            <div class="col-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="repition" id="repition" value="1">
+                                    <label class="form-check-label" for="repition" value="1">
+                                        Si
+                                    </label>
+                                </div>
+
+
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="repition" id="repition" value="0">
+                                    <label class="form-check-label" for="repition" value="0">
+                                        No
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="d-flex flex-column align-items-end">
+
+                            <div class="col-4 my-3">
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="subset_az" value="1">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Lettere
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="subset_num" value="1">
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        Numeri
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="subset_simbol" value="1">
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        Simboli
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div id="pulsantiera" class="mt-3">
+                            <button class="btn btn-primary fs-3">Invia</button>
+                            <button class="btn btn-secondary fs-3">Annulla</button>
+                        </div>
+
+                    </form>
+
                 </div>
-            <?php } ?>
+
+                <a href="./session.php">Vai a session.php</a>
 
 
-            <div class="col-12 mt-3 bg-light rounded">
-                <form action="index.php" method="get">
-                    <label for="pwdlen" class="text-light">Lunghezza password:</label>
-                    <input class="IN" type="number" name="pwdlen" id="pwdlen" placeholder="Lunghezza password" min="8" max="30">
 
-                    <div id="pulsantiera" class="mt-3">
-                        <button class="btn btn-primary">Invia</button>
-                        <button class="btn btn-secondary">Annulla</button>
-                    </div>
-                </form>
+
+
+
             </div>
         </div>
     </div>
